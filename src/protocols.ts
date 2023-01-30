@@ -1,3 +1,5 @@
+import { Ticket } from "@prisma/client";
+
 export type ApplicationError = {
   name: string;
   message: string;
@@ -28,3 +30,16 @@ export type RequestError = {
   name: string,
   message: string,
 };
+
+export type TicketPostType = Omit<Ticket, "id" | "enrollmentId" | "status" | "createdAt" | "updatedAt">
+
+export type PaymentPostType = {
+	ticketId: number,
+	cardData: {
+		issuer: string,
+    number: number,
+    name: string,
+    expirationDate: Date,
+    cvv: number
+	}
+}
